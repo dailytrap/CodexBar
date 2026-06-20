@@ -1,10 +1,13 @@
 # Changelog
 
-## 0.36.2 — Unreleased
+## 0.37.1 — Unreleased
+
+## 0.37.0 — 2026-06-19
 
 ### Added
 - Widgets: add single-window and combined burn-down charts for Codex and Claude session/weekly limits. Thanks @jamesjlopez!
 - AWS Bedrock: show optional rolling 14-day Claude token and request totals from CloudWatch. Thanks @zyaiire!
+- Codex: optionally show both session-window and weekly percentages in the compact menu bar label. Thanks @thepraggyverse!
 - Cursor: show personal on-demand spend alongside the shared team pool. Thanks @yashiels!
 - Documentation: link the community KDE Plasma panel integration. Thanks @tylxr59!
 - Codex: expose explicitly configured profile homes as switchable accounts without copying their credentials. Thanks @kiranmagic7!
@@ -32,6 +35,7 @@
 
 ### Fixed
 - Menu: align cost and utilization rows with provider content and use native bottom action items. Thanks @elijahfriedman!
+- Charts: keep hover selection on bar widths, preserve single-day details, and remove redundant cost-menu detail lines. Thanks @elijahfriedman!
 - Cost history: keep chart date labels aligned with their bars and visible without clipping. Thanks @elijahfriedman!
 - Claude settings: dim and disable Avoid Keychain prompts while global Keychain access is disabled. Thanks @Zihao-Qi!
 - Linux CLI: read OpenCode Go local SQLite usage in automatic mode and allow Command Code billing with a configured manual cookie.
@@ -40,6 +44,7 @@
 - MiniMax: retry the China API region when the global token endpoint reports a structured invalid-key response.
 - Menu refresh: scope manual refreshes to the visible provider, keep Command-R consistent with mouse refresh, and avoid animated refresh-row compositing. Thanks @jangisaac-dev!
 - Localization: improve Catalan app and website translations. Thanks @pmontp19!
+- Claude web: persist renewed session cookies after successful usage requests so imported sessions stay current. Thanks @ProspectOre!
 - Kiro: keep parsed usage available when the optional account probe times out or fails. Thanks @Yuxin-Qiao!
 - Cursor: ignore an exhausted Auto or API subquota only when another independent quota remains usable, while preserving the overall cap. Thanks @Yuxin-Qiao!
 - Memory: release idle OpenAI WebViews under system pressure without blocking the main thread. Thanks @ProspectOre!
