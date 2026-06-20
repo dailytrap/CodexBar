@@ -37,7 +37,7 @@ their product boundaries, functional units, source dates, and uncertainty are ac
 
 ## Fallback Behavior
 
-To maintain the integrity of our calculations and prevent the presentation of "fabricated" data, CodexBar **does not use a universal fallback value** for unknown models. 
+To maintain the integrity of our calculations and prevent the presentation of "fabricated" data, CodexBar **does not use a universal fallback value** for unknown models.
 
 If any model in a provider's daily usage breakdown is unrecognized or unsupported, the *entire* environmental footprint calculation for that session or breakdown is safely suppressed (`nil`). This strict nil-propagation ensures that users only see footprint data when it can be confidently traced back to our documented estimation factors.
 
