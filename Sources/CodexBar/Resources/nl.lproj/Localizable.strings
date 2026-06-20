@@ -1103,3 +1103,11 @@
 "byte_unit_megabytes" = "megabytes";
 "byte_unit_gigabyte" = "gigabyte";
 "byte_unit_gigabytes" = "gigabytes";
+
+"Eco" = "Eco";
+"environmental_impact_header" = "Milieuschatting";
+"environmental_impact_energy_today" = "Vandaag: %1$@ (%2$d telefoonladingen / %3$d keer water koken)";
+"environmental_impact_co2_today" = "CO₂e vandaag: %1$@ (~%2$.1f km autorijden)";
+"environmental_impact_energy_month" = "%1$@: %2$@ (%3$d telefoonladingen / %4$d keer water koken)";
+"environmental_impact_co2_month" = "%1$@ CO₂e: %2$@ (~%3$.1f km autorijden)";
+"environmental_impact_hint" = "Ruwe schatting op basis van het aantal tokens; de werkelijke impact varieert per model, hardware en stroommix.";

@@ -1107,3 +1107,11 @@
 "byte_unit_megabytes" = "megabajty";
 "byte_unit_gigabyte" = "gigabajt";
 "byte_unit_gigabytes" = "gigabajty";
+
+"Eco" = "Eko";
+"environmental_impact_header" = "Szacowany wpływ na środowisko";
+"environmental_impact_energy_today" = "Dzisiaj: %1$@ (%2$d ładowań telefonu / %3$d zagotowań czajnika)";
+"environmental_impact_co2_today" = "Dzisiejsze CO₂e: %1$@ (~%2$.1f km jazdy samochodem)";
+"environmental_impact_energy_month" = "%1$@: %2$@ (%3$d ładowań telefonu / %4$d zagotowań czajnika)";
+"environmental_impact_co2_month" = "%1$@ CO₂e: %2$@ (~%3$.1f km jazdy samochodem)";
+"environmental_impact_hint" = "Przybliżone oszacowanie na podstawie liczby tokenów; rzeczywisty wpływ zależy od modelu, sprzętu i miksu energetycznego.";

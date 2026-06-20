@@ -1104,3 +1104,11 @@
 "byte_unit_megabytes" = "メガバイト";
 "byte_unit_gigabyte" = "ギガバイト";
 "byte_unit_gigabytes" = "ギガバイト";
+
+"Eco" = "環境";
+"environmental_impact_header" = "環境影響の推定";
+"environmental_impact_energy_today" = "今日: %1$@ (スマートフォン%2$d回充電 / ケトル%3$d回沸騰)";
+"environmental_impact_co2_today" = "今日のCO₂e: %1$@ (車で約%2$.1f km)";
+"environmental_impact_energy_month" = "%1$@: %2$@ (スマートフォン%3$d回充電 / ケトル%4$d回沸騰)";
+"environmental_impact_co2_month" = "%1$@のCO₂e: %2$@ (車で約%3$.1f km)";
+"environmental_impact_hint" = "トークン数に基づく概算です。実際の影響はモデル、ハードウェア、電源構成によって異なります。";

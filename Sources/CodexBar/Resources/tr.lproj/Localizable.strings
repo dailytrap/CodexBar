@@ -1105,3 +1105,11 @@
 "byte_unit_megabytes" = "megabayt";
 "byte_unit_gigabyte" = "gigabayt";
 "byte_unit_gigabytes" = "gigabayt";
+
+"Eco" = "Çevre";
+"environmental_impact_header" = "Çevresel etki tahmini";
+"environmental_impact_energy_today" = "Bugün: %1$@ (%2$d telefon şarjı / %3$d su kaynatma)";
+"environmental_impact_co2_today" = "Bugünkü CO₂e: %1$@ (~%2$.1f km araç kullanımı)";
+"environmental_impact_energy_month" = "%1$@: %2$@ (%3$d telefon şarjı / %4$d su kaynatma)";
+"environmental_impact_co2_month" = "%1$@ CO₂e: %2$@ (~%3$.1f km araç kullanımı)";
+"environmental_impact_hint" = "Token sayısına dayalı kaba tahmin; gerçek etki modele, donanıma ve elektrik üretim karışımına göre değişir.";

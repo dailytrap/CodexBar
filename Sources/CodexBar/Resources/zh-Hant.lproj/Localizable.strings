@@ -976,3 +976,11 @@
 "byte_unit_megabytes" = "百萬位元組";
 "byte_unit_gigabyte" = "十億位元組";
 "byte_unit_gigabytes" = "十億位元組";
+
+"Eco" = "環境";
+"environmental_impact_header" = "環境影響估算";
+"environmental_impact_energy_today" = "今天：%1$@（手機充電 %2$d 次 / 煮沸熱水壺 %3$d 次）";
+"environmental_impact_co2_today" = "今天的 CO₂e：%1$@（約駕車 %2$.1f 公里）";
+"environmental_impact_energy_month" = "%1$@：%2$@（手機充電 %3$d 次 / 煮沸熱水壺 %4$d 次）";
+"environmental_impact_co2_month" = "%1$@ CO₂e：%2$@（約駕車 %3$.1f 公里）";
+"environmental_impact_hint" = "依權杖數量計算的粗略估值；實際影響會因模型、硬體與電力結構而異。";

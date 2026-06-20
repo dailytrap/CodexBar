@@ -1103,3 +1103,11 @@
 "byte_unit_megabytes" = "mégaoctets";
 "byte_unit_gigabyte" = "gigaoctet";
 "byte_unit_gigabytes" = "gigaoctets";
+
+"Eco" = "Éco";
+"environmental_impact_header" = "Estimation environnementale";
+"environmental_impact_energy_today" = "Aujourd’hui : %1$@ (%2$d recharges de téléphone / %3$d chauffes de bouilloire)";
+"environmental_impact_co2_today" = "CO₂e aujourd’hui : %1$@ (~%2$.1f km en voiture)";
+"environmental_impact_energy_month" = "%1$@ : %2$@ (%3$d recharges de téléphone / %4$d chauffes de bouilloire)";
+"environmental_impact_co2_month" = "%1$@ CO₂e : %2$@ (~%3$.1f km en voiture)";
+"environmental_impact_hint" = "Estimation approximative d’après le nombre de jetons ; l’impact réel varie selon le modèle, le matériel et le mix électrique.";

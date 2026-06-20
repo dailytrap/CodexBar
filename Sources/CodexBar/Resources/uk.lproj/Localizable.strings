@@ -1103,3 +1103,11 @@
 "byte_unit_megabytes" = "мегабайти";
 "byte_unit_gigabyte" = "гігабайт";
 "byte_unit_gigabytes" = "гігабайти";
+
+"Eco" = "Еко";
+"environmental_impact_header" = "Оцінка впливу на довкілля";
+"environmental_impact_energy_today" = "Сьогодні: %1$@ (%2$d заряджань телефона / %3$d кип’ятінь чайника)";
+"environmental_impact_co2_today" = "CO₂e сьогодні: %1$@ (~%2$.1f км автомобілем)";
+"environmental_impact_energy_month" = "%1$@: %2$@ (%3$d заряджань телефона / %4$d кип’ятінь чайника)";
+"environmental_impact_co2_month" = "%1$@ CO₂e: %2$@ (~%3$.1f км автомобілем)";
+"environmental_impact_hint" = "Орієнтовна оцінка за кількістю токенів; фактичний вплив залежить від моделі, обладнання та структури енергоспоживання.";

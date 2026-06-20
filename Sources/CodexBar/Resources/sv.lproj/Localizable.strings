@@ -1102,3 +1102,11 @@
 "byte_unit_megabytes" = "megabyte";
 "byte_unit_gigabyte" = "gigabyte";
 "byte_unit_gigabytes" = "gigabyte";
+
+"Eco" = "Miljö";
+"environmental_impact_header" = "Miljöuppskattning";
+"environmental_impact_energy_today" = "I dag: %1$@ (%2$d telefonladdningar / %3$d vattenkokningar)";
+"environmental_impact_co2_today" = "CO₂e i dag: %1$@ (~%2$.1f km bilkörning)";
+"environmental_impact_energy_month" = "%1$@: %2$@ (%3$d telefonladdningar / %4$d vattenkokningar)";
+"environmental_impact_co2_month" = "%1$@ CO₂e: %2$@ (~%3$.1f km bilkörning)";
+"environmental_impact_hint" = "Grov uppskattning baserad på antal token; den faktiska påverkan varierar med modell, maskinvara och elmix.";

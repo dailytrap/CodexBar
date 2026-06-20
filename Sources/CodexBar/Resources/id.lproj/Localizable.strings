@@ -1107,3 +1107,11 @@
 "byte_unit_megabytes" = "megabyte";
 "byte_unit_gigabyte" = "gigabyte";
 "byte_unit_gigabytes" = "gigabyte";
+
+"Eco" = "Ramah lingkungan";
+"environmental_impact_header" = "Perkiraan dampak lingkungan";
+"environmental_impact_energy_today" = "Hari ini: %1$@ (%2$d kali pengisian daya ponsel / %3$d kali mendidihkan ketel)";
+"environmental_impact_co2_today" = "CO₂e hari ini: %1$@ (~%2$.1f km berkendara)";
+"environmental_impact_energy_month" = "%1$@: %2$@ (%3$d kali pengisian daya ponsel / %4$d kali mendidihkan ketel)";
+"environmental_impact_co2_month" = "%1$@ CO₂e: %2$@ (~%3$.1f km berkendara)";
+"environmental_impact_hint" = "Perkiraan kasar berdasarkan jumlah token; dampak sebenarnya bervariasi menurut model, perangkat keras, dan bauran listrik.";

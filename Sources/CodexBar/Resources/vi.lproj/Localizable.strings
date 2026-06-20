@@ -1104,3 +1104,11 @@
 "byte_unit_megabytes" = "megabyte";
 "byte_unit_gigabyte" = "gigabyte";
 "byte_unit_gigabytes" = "gigabyte";
+
+"Eco" = "Sinh thái";
+"environmental_impact_header" = "Ước tính tác động môi trường";
+"environmental_impact_energy_today" = "Hôm nay: %1$@ (%2$d lần sạc điện thoại / %3$d lần đun ấm nước)";
+"environmental_impact_co2_today" = "CO₂e hôm nay: %1$@ (~%2$.1f km lái xe)";
+"environmental_impact_energy_month" = "%1$@: %2$@ (%3$d lần sạc điện thoại / %4$d lần đun ấm nước)";
+"environmental_impact_co2_month" = "%1$@ CO₂e: %2$@ (~%3$.1f km lái xe)";
+"environmental_impact_hint" = "Ước tính sơ bộ dựa trên số token; tác động thực tế thay đổi theo mô hình, phần cứng và cơ cấu nguồn điện.";
