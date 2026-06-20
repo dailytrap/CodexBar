@@ -1,56 +1,81 @@
-import CodexBarCore
 import Foundation
 import Testing
 @testable import CodexBar
+@testable import CodexBarCore
 
 struct EnvironmentalImpactTests {
     @Test
-    func environmentalImpactCalculations() throws {
-        // Test Mistral Large 2
-        // Joules = 10_000 * 26.6 = 266,000 J
-        // kWh = 266,000 / 3,600,000 = 0.073888... kWh
-        // CO2 kg = 0.073888... * 0.385 = 0.028447... kg
-        let mistralBreakdowns = [CostUsageDailyReport.ModelBreakdown(
+    func unapprovedMethodologyIsDisabledByDefault() {
+        #expect(!EnvironmentalImpact.methodologyIsEnabled(environment: [:]))
+
+        let breakdowns = [CostUsageDailyReport.ModelBreakdown(
             modelName: "mistral-large-latest",
             costUSD: nil,
             totalTokens: 10000)]
-        let mistralImpact = try #require(EnvironmentalImpact(provider: .mistral, breakdowns: mistralBreakdowns))
+        #expect(EnvironmentalImpact(provider: .mistral, breakdowns: breakdowns, environment: [:]) == nil)
+    }
 
-        #expect(abs(mistralImpact.energyKWh - 0.073888) < 0.0001)
-        #expect(abs(mistralImpact.co2Kg - 0.028447) < 0.0001)
+    @Test
+    func debugMethodologyPreviewRequiresExplicitOptIn() {
+        #if DEBUG
+        #expect(EnvironmentalImpact.methodologyIsEnabled(environment: [
+            EnvironmentalImpact.previewEnvironmentKey: "1",
+        ]))
+        #expect(!EnvironmentalImpact.methodologyIsEnabled(environment: [
+            EnvironmentalImpact.previewEnvironmentKey: "true",
+        ]))
+        #else
+        #expect(!EnvironmentalImpact.methodologyIsEnabled(environment: [
+            EnvironmentalImpact.previewEnvironmentKey: "1",
+        ]))
+        #endif
+    }
 
-        // Test Claude Haiku
-        // Joules = 100_000 * 5.0 = 500,000 J
-        // kWh = 500,000 / 3,600,000 = 0.138888... kWh
-        let claudeBreakdowns = [CostUsageDailyReport.ModelBreakdown(
-            modelName: "claude-3-haiku-20240307",
-            costUSD: nil,
-            totalTokens: 100_000)]
-        let claudeImpact = try #require(EnvironmentalImpact(provider: .claude, breakdowns: claudeBreakdowns))
+    @Test
+    func debugPreviewShowsSupportedModelsAndSuppressesUnsupportedModels() throws {
+        #if DEBUG
+        let environment = [EnvironmentalImpact.previewEnvironmentKey: "1"]
+        let supportedEntry = Self.entry(modelName: "mistral-large-latest")
+        let supportedSnapshot = CostUsageTokenSnapshot(
+            sessionTokens: supportedEntry.totalTokens,
+            sessionCostUSD: 1,
+            last30DaysTokens: supportedEntry.totalTokens,
+            last30DaysCostUSD: 1,
+            daily: [supportedEntry],
+            sessionDay: supportedEntry,
+            updatedAt: Date())
+        let supportedSection = try #require(UsageMenuCardView.Model.tokenUsageSection(
+            provider: .mistral,
+            enabled: true,
+            snapshot: supportedSnapshot,
+            error: nil,
+            environment: environment))
 
-        #expect(abs(claudeImpact.energyKWh - 0.138888) < 0.0001)
+        #expect(supportedSection.environmentalImpactLines.map(\.id) == [
+            .energyToday,
+            .co2Today,
+            .energyWindow,
+            .co2Window,
+        ])
 
-        // Test fallback (unknown model should return nil)
-        let fallbackBreakdowns = [CostUsageDailyReport.ModelBreakdown(
-            modelName: "unknown-model",
-            costUSD: nil,
-            totalTokens: 10000)]
-        #expect(EnvironmentalImpact(provider: .synthetic, breakdowns: fallbackBreakdowns) == nil)
+        let unsupportedEntry = Self.entry(modelName: "unsupported-model")
+        let unsupportedSnapshot = CostUsageTokenSnapshot(
+            sessionTokens: unsupportedEntry.totalTokens,
+            sessionCostUSD: 1,
+            last30DaysTokens: unsupportedEntry.totalTokens,
+            last30DaysCostUSD: 1,
+            daily: [unsupportedEntry],
+            sessionDay: unsupportedEntry,
+            updatedAt: Date())
+        let unsupportedSection = try #require(UsageMenuCardView.Model.tokenUsageSection(
+            provider: .mistral,
+            enabled: true,
+            snapshot: unsupportedSnapshot,
+            error: nil,
+            environment: environment))
 
-        // Test Vertex AI Claude model
-        // Joules = 100_000 * 15.0 (Sonnet) = 1,500,000 J
-        // kWh = 1,500,000 / 3,600,000 = 0.41666... kWh
-        let vertexClaudeBreakdowns = [CostUsageDailyReport.ModelBreakdown(
-            modelName: "claude-3-5-sonnet-v2@20241022",
-            costUSD: nil,
-            totalTokens: 100_000)]
-        let vertexClaudeImpact = try #require(
-            EnvironmentalImpact(provider: .vertexai, breakdowns: vertexClaudeBreakdowns))
-        #expect(abs(vertexClaudeImpact.energyKWh - 0.41666) < 0.0001)
-
-        // Return nil when no tokens
-        let emptyBreakdowns: [CostUsageDailyReport.ModelBreakdown] = []
-        #expect(EnvironmentalImpact(provider: .openai, breakdowns: emptyBreakdowns) == nil)
+        #expect(unsupportedSection.environmentalImpactLines.isEmpty)
+        #endif
     }
 
     @Test
@@ -90,5 +115,19 @@ struct EnvironmentalImpactTests {
         #expect(rows.map(\.text) == [duplicateText, duplicateText])
         #expect(rows.map(\.id) == [.energyToday, .energyWindow])
         #expect(Set(rows.map(\.id)).count == rows.count)
+    }
+
+    private static func entry(modelName: String) -> CostUsageDailyReport.Entry {
+        CostUsageDailyReport.Entry(
+            date: "2026-06-20",
+            inputTokens: 8000,
+            outputTokens: 2000,
+            totalTokens: 10000,
+            costUSD: 1,
+            modelsUsed: [modelName],
+            modelBreakdowns: [CostUsageDailyReport.ModelBreakdown(
+                modelName: modelName,
+                costUSD: 1,
+                totalTokens: 10000)])
     }
 }

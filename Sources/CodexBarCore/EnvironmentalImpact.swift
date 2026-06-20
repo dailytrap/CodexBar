@@ -1,6 +1,8 @@
 import Foundation
 
 public struct EnvironmentalImpact: Sendable, Equatable {
+    static let previewEnvironmentKey = "CODEXBAR_PREVIEW_UNAPPROVED_ENVIRONMENTAL_IMPACT"
+
     private enum Estimate {
         static let joulesPerKWh = 3_600_000.0
         static let globalAverageCO2KgPerKWh = 0.385
@@ -12,8 +14,22 @@ public struct EnvironmentalImpact: Sendable, Equatable {
     public let energyKWh: Double
     public let co2Kg: Double
 
-    /// Literature-based footprints (in Joules per Token)
-    public static func joulesPerToken(provider: UsageProvider, modelName: String) -> Double? {
+    static func methodologyIsEnabled(environment: [String: String]) -> Bool {
+        #if DEBUG
+        environment[self.previewEnvironmentKey] == "1"
+        #else
+        _ = environment
+        return false
+        #endif
+    }
+
+    /// Draft footprints used only for explicit debug previews pending maintainer methodology approval.
+    public static func joulesPerToken(
+        provider: UsageProvider,
+        modelName: String,
+        environment: [String: String] = ProcessInfo.processInfo.environment) -> Double?
+    {
+        guard self.methodologyIsEnabled(environment: environment) else { return nil }
         let name = modelName.lowercased()
 
         switch provider {
@@ -83,7 +99,11 @@ public struct EnvironmentalImpact: Sendable, Equatable {
         return nil
     }
 
-    public init?(provider: UsageProvider, breakdowns: [CostUsageDailyReport.ModelBreakdown]) {
+    public init?(
+        provider: UsageProvider,
+        breakdowns: [CostUsageDailyReport.ModelBreakdown],
+        environment: [String: String] = ProcessInfo.processInfo.environment)
+    {
         guard !breakdowns.isEmpty else { return nil }
         var totalJoules = 0.0
         var hasValidTokens = false
@@ -92,7 +112,11 @@ public struct EnvironmentalImpact: Sendable, Equatable {
             guard let tokens = breakdown.totalTokens, tokens > 0 else { continue }
             hasValidTokens = true
 
-            guard let footprint = Self.joulesPerToken(provider: provider, modelName: breakdown.modelName) else {
+            guard let footprint = Self.joulesPerToken(
+                provider: provider,
+                modelName: breakdown.modelName,
+                environment: environment)
+            else {
                 return nil
             }
             totalJoules += Double(tokens) * footprint

@@ -70,7 +70,8 @@ extension UsageMenuCardView.Model {
         provider: UsageProvider,
         enabled: Bool,
         snapshot: CostUsageTokenSnapshot?,
-        error: String?) -> TokenUsageSection?
+        error: String?,
+        environment: [String: String] = ProcessInfo.processInfo.environment) -> TokenUsageSection?
     {
         guard ProviderDescriptorRegistry.descriptor(for: provider).tokenCost.supportsTokenCost else {
             return nil
@@ -110,7 +111,11 @@ extension UsageMenuCardView.Model {
 
         var environmentalImpactLines: [EnvironmentalImpactLine] = []
         if let sessionBreakdowns = snapshot.sessionDay?.modelBreakdowns, !sessionBreakdowns.isEmpty {
-            if let impact = EnvironmentalImpact(provider: provider, breakdowns: sessionBreakdowns) {
+            if let impact = EnvironmentalImpact(
+                provider: provider,
+                breakdowns: sessionBreakdowns,
+                environment: environment)
+            {
                 environmentalImpactLines.append(EnvironmentalImpactLine(
                     id: .energyToday,
                     text: L(
@@ -131,7 +136,11 @@ extension UsageMenuCardView.Model {
 
         let monthBreakdowns = snapshot.monthBreakdowns
         if !monthBreakdowns.isEmpty {
-            if let impact = EnvironmentalImpact(provider: provider, breakdowns: monthBreakdowns) {
+            if let impact = EnvironmentalImpact(
+                provider: provider,
+                breakdowns: monthBreakdowns,
+                environment: environment)
+            {
                 environmentalImpactLines.append(EnvironmentalImpactLine(
                     id: .energyWindow,
                     text: L(

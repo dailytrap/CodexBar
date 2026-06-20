@@ -249,6 +249,7 @@ public struct OpenAIAPIUsageSnapshot: Codable, Equatable, Sendable {
             last30DaysRequests: total.requests,
             historyDays: self.historyDays,
             daily: daily,
+            sessionDay: daily.last,
             updatedAt: self.updatedAt)
     }
 

@@ -453,6 +453,8 @@ struct OpenAIAPIUsageFetcherTests {
         #expect(snapshot.daily[1].requestCount == 42)
         #expect(snapshot.daily[1].modelBreakdowns?.first?.requestCount == 42)
         #expect(snapshot.daily[1].modelBreakdowns?.first?.modelName == "gpt-5.2-codex")
+        #expect(snapshot.sessionDay == snapshot.daily.last)
+        #expect(snapshot.sessionDay?.modelBreakdowns?.first?.modelName == "gpt-5.2-codex")
     }
 
     private static func queryValue(_ name: String, in request: URLRequest) -> String? {

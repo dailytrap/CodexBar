@@ -14,7 +14,7 @@ struct EnvironmentalImpactSectionView: View {
                     Image(systemName: "leaf")
                         .foregroundColor(.green)
                         .imageScale(.small)
-                    Text("environmental_impact_header")
+                    Text(L("environmental_impact_header"))
                         .font(.body)
                         .fontWeight(.medium)
                 }

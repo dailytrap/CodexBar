@@ -223,6 +223,8 @@ struct MistralUsageSnapshotConversionTests {
         #expect(cost.last30DaysTokens == 500)
         #expect(cost.daily.count == 2)
         #expect(cost.daily.last?.modelsUsed == ["mistral-small"])
+        #expect(cost.sessionDay == cost.daily.last)
+        #expect(cost.sessionDay?.modelBreakdowns?.first?.modelName == "mistral-small")
     }
 
     @Test

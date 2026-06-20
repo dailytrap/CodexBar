@@ -245,6 +245,7 @@ public struct MistralUsageSnapshot: Codable, Sendable {
             historyDays: selected.isEmpty ? clampedHistoryDays : max(1, min(365, selected.count)),
             historyLabel: "This month",
             daily: entries,
+            sessionDay: entries.last,
             updatedAt: self.updatedAt)
     }
 }

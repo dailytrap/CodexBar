@@ -1,8 +1,15 @@
 # Environmental Impact Methodology
 
-The environmental footprint module in CodexBar estimates energy usage (and resulting CO2 emissions) from Large Language Model API consumption based on published life cycle assessments (LCAs) and power measurements. 
+> **Status: draft, pending maintainer approval.** Release builds suppress all environmental estimates. The values
+> below are available only in debug builds with `CODEXBAR_PREVIEW_UNAPPROVED_ENVIRONMENTAL_IMPACT=1` so the UI
+> plumbing can be reviewed without publishing unapproved claims to users.
 
-Because official APIs generally do not expose operational energy per request, we map specific model families to estimated Joules per token.
+The environmental footprint module in CodexBar explores energy usage (and resulting CO2 emissions) from Large
+Language Model API consumption based on published life cycle assessments (LCAs) and power measurements.
+
+Because official APIs generally do not expose operational energy per request, the draft maps specific model families
+to estimated Joules per token. These mappings are provisional and must not be treated as source-backed facts until
+their product boundaries, functional units, source dates, and uncertainty are accepted by a maintainer.
 
 ## Estimation Factors
 
